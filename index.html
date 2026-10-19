@@ -41,7 +41,7 @@
   /* Ajuste final de clientes: logos más visibles sin alterar la composición. */
   .customers .client-cloud .logo-tile { height: 72px; padding: 4px 8px; }
   .customers .client-cloud img { height: 65px; max-width: 100%; }
-  .customers .client-cloud .logo-tile:nth-child(4) img { transform: scale(1.85); }
+  .customers .client-cloud .logo-tile:nth-child(4) img { transform: scale(1.78); }
   .customers .client-cloud .logo-tile:nth-child(6) img { transform: scale(1.85); }
   .customers .client-cloud .logo-tile:nth-child(19) img { transform: scale(2.4); }
   .customers .client-cloud .logo-tile:nth-child(25) img { transform: scale(1.4); }
@@ -121,6 +121,67 @@
     .partners .light-copy { padding-top: clamp(118px, 16vh, 160px); }
     .customers .client-cloud { grid-template-columns: repeat(4, minmax(0, 1fr)); gap: clamp(10px, 1.4vw, 20px); }
     .customers .client-cloud .logo-tile:nth-child(25) img { transform: scale(1.2); }
+  }
+
+  /* Última capa responsive: cada escena crece con su contenido y ningún elemento invade la siguiente. */
+  .scene::after { right: 0; }
+
+  @media (max-width: 900px), (max-height: 840px) {
+    html, body { overflow-x: hidden; }
+    body { overflow-y: auto; }
+    .deck { height: auto; min-height: 100%; overflow: visible; scroll-snap-type: none; }
+    .scene {
+      box-sizing: border-box;
+      width: 100%;
+      height: auto;
+      min-height: 100svh;
+      overflow: visible;
+      padding: clamp(72px, 10vh, 112px) 0 clamp(72px, 10vh, 112px);
+    }
+    .frame {
+      box-sizing: border-box;
+      width: min(calc(100% - clamp(32px, 7vw, 112px)), 1360px);
+      height: auto;
+      min-height: 0;
+    }
+    .scene > .frame > .meta {
+      position: static;
+      width: 100%;
+      justify-content: flex-end;
+      margin-top: clamp(32px, 5vh, 56px);
+    }
+    .cover .frame { display: flex; flex-direction: column; align-items: flex-start; justify-content: center; }
+    .cover-corner { display: none; }
+    .cover .logo { position: static; align-self: flex-start; margin-bottom: clamp(24px, 4vh, 40px); }
+    .cover-copy, .split .copy, .service-copy, .pillar-copy { width: 100%; max-width: none; }
+    .cover-copy { padding-top: 0; }
+    .cover-copy h1 { max-width: 100%; font-size: clamp(46px, 10vw, 88px); }
+    .cover-copy .lead { max-width: 100%; font-size: clamp(18px, 3.8vw, 24px); }
+    .split .copy { padding-top: 0; margin-top: clamp(28px, 5vh, 44px); }
+    .split .copy h2 { max-width: 100%; font-size: clamp(40px, 8.8vw, 72px); }
+    .split .copy .lead { max-width: 100%; font-size: clamp(18px, 3.8vw, 24px); }
+    .stat-panel { height: clamp(250px, 42vh, 360px); min-height: 0; margin: 0; }
+    .stat strong { font-size: clamp(100px, 32vw, 210px); }
+    .stat small { font-size: clamp(13px, 2.6vw, 18px); }
+    .pillars .orbital { overflow: hidden; }
+    .pillars .orbital:before, .pillars .orbital:after { inset: 18% 12%; transform: rotate(24deg) scaleX(1.02); }
+    .pillars .orbital:after { transform: rotate(-30deg) scaleX(1.02); }
+    .service-copy h2 { max-width: 100%; font-size: clamp(38px, 8.8vw, 64px); }
+    .service-copy > .lead { max-width: 100%; font-size: clamp(18px, 3.8vw, 24px); }
+    .service-brand-cloud { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .closing .frame { padding-top: clamp(104px, 15vh, 150px); }
+    .closing h2 { max-width: 100%; font-size: clamp(48px, 10vw, 92px); }
+  }
+
+  @media (max-width: 520px) {
+    .frame, .pillars .frame { width: calc(100% - 32px); }
+    .logo, .logo.light, .partners .logo, .customers .logo, .closing .logo.light { max-width: 70vw; height: auto; }
+    .pillars .orbital { width: 100%; }
+    .pillar-list { grid-template-columns: 1fr; gap: 18px; }
+    .logo-cloud, .client-cloud { gap: 12px 10px; }
+    .logo-cloud .logo-tile, .client-cloud .logo-tile { min-width: 0; padding-left: 2px; padding-right: 2px; }
+    .logo-cloud img, .client-cloud img { max-width: 100%; }
+    .prompt-row { margin-top: 48px; }
   }
 </style>
 </head>
